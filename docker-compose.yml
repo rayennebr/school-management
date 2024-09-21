@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: shcool-management-db
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: school-management
+      POSTGRES_PASSWORD: postgres
