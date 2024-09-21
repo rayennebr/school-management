@@ -1,0 +1,6 @@
+dev\rayenne\entitiy\Student.class
+dev\rayenne\dto\ParentDto.class
+dev\rayenne\services\implementation\StudentService.class
+dev\rayenne\dto\StudentDto.class
+dev\rayenne\repository\StudentRepository.class
+dev\rayenne\services\IStudentService.class
