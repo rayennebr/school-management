@@ -4,11 +4,13 @@ import dev.rayenne.dto.ExamResultDto;
 import dev.rayenne.mapper.ExamResultMapper;
 import dev.rayenne.repositories.ExamResultRepository;
 import dev.rayenne.service.IExamResultService;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
+@Component
 public class ExamResultService implements IExamResultService {
 
     private final ExamResultRepository ExamResultRepository;

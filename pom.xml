@@ -12,6 +12,7 @@
         <module>studentService</module>
         <module>teacher-service</module>
         <module>exam-service</module>
+        <module>classroom-service</module>
     </modules>
 
     <properties>

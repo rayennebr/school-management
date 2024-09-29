@@ -1,0 +1,13 @@
+dev\rayenne\services\IClassRoomService.class
+dev\rayenne\dto\ClassRoomDto.class
+dev\rayenne\dto\ClassRoomDto$ClassRoomDtoBuilder.class
+dev\rayenne\services\implementation\ClassRoomService.class
+dev\rayenne\dto\GenericResponse.class
+dev\rayenne\mapper\ClassRoomMapper.class
+dev\rayenne\controllers\implementation\ClassRoomController.class
+dev\rayenne\mapper\ClassRoomMapperImpl.class
+dev\rayenne\controllers\IClassRoomController.class
+dev\rayenne\dto\GenericResponse$GenericResponseBuilder.class
+dev\rayenne\entities\ClassRoom.class
+dev\rayenne\repositories\ClassRoomRepository.class
+dev\rayenne\ClassRoomServiceApplication.class

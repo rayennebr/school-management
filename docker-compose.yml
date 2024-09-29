@@ -8,3 +8,11 @@ services:
     environment:
       POSTGRES_DB: school-management
       POSTGRES_PASSWORD: postgres
+  mongo:
+    image: mongo:7.0
+    container_name: course-management-db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
