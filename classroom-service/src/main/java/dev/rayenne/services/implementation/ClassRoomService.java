@@ -7,6 +7,7 @@ import dev.rayenne.services.IClassRoomService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public class ClassRoomService implements IClassRoomService {
@@ -31,7 +32,7 @@ public class ClassRoomService implements IClassRoomService {
     @Override
     public ClassRoomDto saveClassRoom(ClassRoomDto classRoomDto) {
         return classRoomMapper.toDto(
-                classRoomRepository.save(
+                classRoomRepository.insert(
                         classRoomMapper.toEntity(
                                 classRoomDto
                         )
@@ -41,11 +42,22 @@ public class ClassRoomService implements IClassRoomService {
 
     @Override
     public ClassRoomDto updateClassRoom(ClassRoomDto classRoomDto, String classRoomId) {
-        return null;
+        var classRoomToUpdate=classRoomRepository.findById(classRoomId)
+                .orElseThrow(()->new NoSuchElementException("class room n'existe pas"));
+        classRoomMapper.updateClassRoomMapper(classRoomDto,classRoomToUpdate);
+        classRoomRepository.insert(classRoomToUpdate);
+        return classRoomMapper.toDto(
+                classRoomToUpdate
+        );
     }
 
     @Override
     public ClassRoomDto deleteClassRoom(String classRoomId) {
-        return null;
+        var classRoomToDelete=classRoomRepository.findById(classRoomId)
+                .orElseThrow(()->new NoSuchElementException("class room n'existe pas"));
+        classRoomRepository.delete(classRoomToDelete);
+        return classRoomMapper.toDto(
+                classRoomToDelete
+        );
     }
 }
