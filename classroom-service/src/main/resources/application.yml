@@ -3,21 +3,6 @@ server:
 spring:
   application:
     name: classroom-service
-  data:
-    mongodb:
-      uri: "mongodb://root:root@localhost:27017/class-room-service-db?authSource=admin"
-management:
-  endpoint:
-    health:
-      show-details: always
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  healthcheck:
-    enabled: true
+  cloud:
+    config:
+      uri: http://localhost:9090
