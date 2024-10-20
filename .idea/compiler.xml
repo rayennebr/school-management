@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="register-service" />
       </profile>
       <profile name="Annotation profile for school-management" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -29,6 +30,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="classroom-service" options="-parameters" />
       <module name="exam-service" options="-parameters" />
+      <module name="register-service" options="-parameters" />
       <module name="studentService" options="-parameters" />
       <module name="teacher-service" options="-parameters" />
     </option>
