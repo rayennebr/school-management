@@ -3,6 +3,5 @@ server:
 spring:
   application:
     name: classroom-service
-  cloud:
-    config:
-      uri: http://localhost:9090
+  config:
+    import: optional:configserver:http://localhost:9090

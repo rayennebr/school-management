@@ -1,0 +1,29 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: exam-service
+  datasource:
+    url: jdbc:postgresql://0.0.0.0:5432/school-management
+    password: postgres
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+management:
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  healthcheck:
+    enabled: true
