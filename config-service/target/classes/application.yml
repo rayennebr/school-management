@@ -3,12 +3,12 @@ server:
 spring:
   application:
     name: config-service
+  profiles:
+    active: native
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/rayennebr/school-management/configuration
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+          uri: https://github.com/rayennebr/school-management-configuration
+          clone-on-start: true
+

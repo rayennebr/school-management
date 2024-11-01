@@ -5,3 +5,6 @@ spring:
     name: classroom-service
   config:
     import: optional:configserver:http://localhost:9090
+  data:
+    mongodb:
+      uri: "mongodb://root:root@localhost:27017/class-room-service-db?authSource=admin"
