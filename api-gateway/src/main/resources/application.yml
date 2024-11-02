@@ -1,0 +1,33 @@
+server:
+  port: 9091
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: classroom-service
+          uri: lb://clsrm
+          predicates:
+            - Path=/api/v1/classrooms/**
+
+        - id: exam-service
+          uri: lb://exms
+          predicates:
+            - Path=/api/v1/exams/**
+            - Path=/api/v1/examResults/**
+            - Path=/api/v1/examTypes/**
+
+        - id: student-service
+          uri: lb://stdnt
+          predicates:
+            - Path=/api/v1/students/**
+
+        - id: teacher-service
+          uri: lb://tchr
+          predicates:
+            - Path=/api/v1/teacher/**
