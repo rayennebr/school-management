@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Document(collation = "grade")
+@Document(collection = "grade")
 public class Grade implements Serializable {
 
     private String gradeId;

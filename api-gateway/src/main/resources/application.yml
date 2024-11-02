@@ -14,6 +14,9 @@ spring:
           uri: lb://clsrm
           predicates:
             - Path=/api/v1/classrooms/**
+            - Path=/api/v1/grade/**
+            - Path=/api/v1/classstudent/**
+            - Path=/api/v1/course/**
 
         - id: exam-service
           uri: lb://exms

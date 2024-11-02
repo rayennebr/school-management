@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/classrooms")
@@ -48,5 +49,15 @@ public class ClassRoomController implements IClassRoomController {
                    .data(null)
                    .build();
        }
+    }
+
+    @GetMapping("/getAllByTeacherUid/{teacherUid}")
+    @Override
+    public GenericResponse<List<ClassRoomDto>> getAllByTeacherUid(@PathVariable UUID teacherUid) {
+        return GenericResponse.<List<ClassRoomDto>>builder()
+                .status(HttpStatus.OK)
+                .message("success")
+                .data(classRoomService.getAllByTeacherUid(teacherUid))
+                .build();
     }
 }

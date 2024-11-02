@@ -1,5 +1,6 @@
 package dev.rayenne.controller;
 
+import dev.rayenne.dto.ClassRoomDto;
 import dev.rayenne.dto.GenericResponse;
 import dev.rayenne.dto.TeacherDto;
 
@@ -12,4 +13,5 @@ public interface ITeacherController {
     GenericResponse<TeacherDto>saveTeacher(TeacherDto teacherDto);
     GenericResponse<TeacherDto> updateTeacher(TeacherDto teacherDto, UUID teacherId);
     GenericResponse<TeacherDto> deleteTeacher(UUID teacherId);
+    GenericResponse<List<ClassRoomDto>> getAllClassRooms(UUID teacherId);
 }

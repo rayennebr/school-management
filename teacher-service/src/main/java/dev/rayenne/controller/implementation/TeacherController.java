@@ -1,6 +1,7 @@
 package dev.rayenne.controller.implementation;
 
 import dev.rayenne.controller.ITeacherController;
+import dev.rayenne.dto.ClassRoomDto;
 import dev.rayenne.dto.GenericResponse;
 import dev.rayenne.dto.TeacherDto;
 import dev.rayenne.service.ITeacherService;
@@ -59,6 +60,16 @@ public class TeacherController implements ITeacherController {
                 .status(HttpStatus.OK)
                 .message("success")
                 .data(teacherService.deleteTeacher(teacherId))
+                .build();
+    }
+
+    @GetMapping("/getAllClassRooms/{teacherId}")
+    @Override
+    public GenericResponse<List<ClassRoomDto>> getAllClassRooms(@PathVariable UUID teacherId) {
+        return GenericResponse.<List<ClassRoomDto>>builder()
+                .status(HttpStatus.OK)
+                .message("success")
+                .data(teacherService.getAllClassRooms(teacherId))
                 .build();
     }
 }

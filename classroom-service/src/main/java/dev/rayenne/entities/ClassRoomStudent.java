@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-@Document(collation = "classroomstudent")
+@Document(collection = "classroomstudent")
 public class ClassRoomStudent implements Serializable {
 
     @Id

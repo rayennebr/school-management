@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Component
 public class ClassRoomService implements IClassRoomService {
@@ -59,5 +60,13 @@ public class ClassRoomService implements IClassRoomService {
         return classRoomMapper.toDto(
                 classRoomToDelete
         );
+    }
+
+    @Override
+    public List<ClassRoomDto> getAllByTeacherUid(UUID teacherUid) {
+        return classRoomRepository.findAllByTeacherId(teacherUid)
+                .stream()
+                .map(classRoomMapper::toDto)
+                .toList();
     }
 }
