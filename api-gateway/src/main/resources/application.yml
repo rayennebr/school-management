@@ -13,7 +13,7 @@ spring:
           enabled: true
       routes:
         - id: classroom-service
-          uri: lb://clsrm
+          uri: lb://classroom-service
           predicates:
             - Path=/api/v1/classrooms/**
             - Path=/api/v1/grade/**
@@ -21,21 +21,21 @@ spring:
             - Path=/api/v1/course/**
 
         - id: exam-service
-          uri: lb://exms
+          uri: lb://exam-service
           predicates:
             - Path=/api/v1/exams/**
             - Path=/api/v1/examResults/**
             - Path=/api/v1/examTypes/**
 
         - id: student-service
-          uri: lb://stdnt
+          uri: lb://student-service
           predicates:
             - Path=/api/v1/students/**
 
         - id: teacher-service
           uri: lb://tchr
           predicates:
-            - Path=/api/v1/teacher/**
+            - Path= /api/v1/teacher/**
 eureka:
   client:
     serviceUrl:
