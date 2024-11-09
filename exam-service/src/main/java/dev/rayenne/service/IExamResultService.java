@@ -14,4 +14,5 @@ public interface IExamResultService {
     ExamResultDto saveExamResult(ExamResultDto exam);
     ExamResultDto updateExamResult(ExamResultDto ExamResultDto, UUID examId);
     ExamResultDto deleteExamResult(UUID examId);
+    List<ExamResultDto>listExamResultBuStudent(UUID studentUid);
 }

@@ -55,4 +55,12 @@ public class ExamResultService implements IExamResultService {
         ExamResultRepository.delete(ExamResultToDelete);
         return ExamResultMapper.toDto(ExamResultToDelete);
     }
+
+    @Override
+    public List<ExamResultDto> listExamResultBuStudent(UUID studentUid) {
+        return ExamResultRepository.findAllByStudentId(studentUid)
+                .stream()
+                .map(ExamResultMapper::toDto)
+                .toList();
+    }
 }

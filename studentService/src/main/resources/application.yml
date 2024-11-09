@@ -15,3 +15,24 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+resilience4j:
+  circuitbreaker:
+    instances:
+      exam:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        sliding-window-type: count_based
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 50s
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+  timelimiter:
+    instances:
+      exam:
+        timeout-duration: 3s
+  retry:
+    instances:
+      exam:
+        max-attempts: 3
+        wait-duration: 5s

@@ -1,5 +1,6 @@
 package dev.rayenne.services;
 
+import dev.rayenne.dto.ExamResultDto;
 import dev.rayenne.dto.StudentDto;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,5 @@ public interface IStudentService {
     StudentDto saveStudent(StudentDto studentDto);
     StudentDto updateStudent(StudentDto studentDto, UUID studentId);
     StudentDto deleteStudent(UUID studentId);
+    List<ExamResultDto>getAllExam(UUID studentId);
 }

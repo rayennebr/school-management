@@ -62,4 +62,14 @@ public class ExamResultController implements IExamResultController {
                 .data(examResultService.deleteExamResult(ExamResultId))
                 .build();
     }
+
+    @GetMapping("/byStudent/{studentUid}")
+    @Override
+    public GenericResponse<List<ExamResultDto>> listExamResultBuStudent(@PathVariable UUID studentUid) {
+        return GenericResponse.<List<ExamResultDto>>builder()
+                .status(HttpStatus.OK)
+                .message("success")
+                .data(examResultService.listExamResultBuStudent(studentUid))
+                .build();
+    }
 }

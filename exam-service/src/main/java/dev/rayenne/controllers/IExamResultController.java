@@ -12,4 +12,5 @@ public interface IExamResultController {
     GenericResponse<ExamResultDto> saveExamResult(ExamResultDto ExamResult);
     GenericResponse<ExamResultDto> updateExamResult(ExamResultDto ExamResultDto, UUID ExamResultId);
     GenericResponse<ExamResultDto> deleteExamResult(UUID ExamResultId);
+    GenericResponse<List<ExamResultDto>>listExamResultBuStudent(UUID studentUid);
 }

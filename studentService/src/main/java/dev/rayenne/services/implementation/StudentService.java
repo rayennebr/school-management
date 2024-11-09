@@ -1,10 +1,14 @@
 package dev.rayenne.services.implementation;
 
+import dev.rayenne.dto.ExamResultDto;
+import dev.rayenne.dto.GenericResponse;
 import dev.rayenne.dto.StudentDto;
 import dev.rayenne.mapper.StudentMapper;
 import dev.rayenne.repository.StudentRepository;
 import dev.rayenne.services.IStudentService;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -15,6 +19,7 @@ public class StudentService implements IStudentService {
 
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
+    private final WebClient webClient= WebClient.builder().baseUrl("http://localhost:8083/api/v1/").build();
 
     public StudentService(StudentRepository studentRepository,
                           StudentMapper studentMapper)
@@ -54,5 +59,15 @@ public class StudentService implements IStudentService {
                 .orElseThrow(()->new NoSuchElementException(" student n'existe pas !"));
         studentRepository.delete(studentToDelete);
         return studentMapper.toDto(studentToDelete);
+    }
+
+    @Override
+    public List<ExamResultDto> getAllExam(UUID studentId) {
+        return webClient.get()
+                .uri("examResults/byStudent/"+studentId)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<GenericResponse<List<ExamResultDto>>>() {})
+                .block()
+                .data();
     }
 }
