@@ -33,9 +33,18 @@ spring:
             - Path=/api/v1/students/**
 
         - id: teacher-service
-          uri: lb://tchr
+          uri: lb://teacher-service
           predicates:
             - Path= /api/v1/teacher/**
+        - id: register-service
+          uri: lb://register-service
+          predicates:
+            - Path= /eureka/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:7080/realms/school-management
 eureka:
   client:
     serviceUrl:
