@@ -6,6 +6,7 @@ import dev.rayenne.dto.StudentDto;
 import dev.rayenne.mapper.StudentMapper;
 import dev.rayenne.repository.StudentRepository;
 import dev.rayenne.services.IStudentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -13,8 +14,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.Jwt;
 @Component
+@Slf4j
 public class StudentService implements IStudentService {
 
     private final StudentRepository studentRepository;
@@ -31,6 +35,8 @@ public class StudentService implements IStudentService {
     @Override
     public List<StudentDto> getAllStudents() {
 
+        var connectedUser=this.getConnectedUser();
+        log.info("connected user {}",connectedUser);
         return studentRepository.findAll()
                 .stream()
                 .map(studentMapper::toDto)
@@ -69,5 +75,18 @@ public class StudentService implements IStudentService {
                 .bodyToMono(new ParameterizedTypeReference<GenericResponse<List<ExamResultDto>>>() {})
                 .block()
                 .data();
+    }
+
+    private String getConnectedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof Jwt) {
+                Jwt jwt = (Jwt) principal;
+                return jwt.getClaimAsString("preferred_username"); // Extract Keycloak username
+            }
+        }
+        return "anonymous"; // Fallback if no authenticated user
     }
 }
